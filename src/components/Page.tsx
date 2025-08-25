@@ -7,7 +7,7 @@ export default function Page({ children, title }) {
     <div className="page-container">
       <header className="header">
         <div className="header-content">
-          <h1>RandomNow</h1>
+          <h1>RandoMe</h1>
           <Link to="/" className="back-link">
             <div className="back-icon-bg">
               <img src="/images/BackIcon.png" alt="Back" />
