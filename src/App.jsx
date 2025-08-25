@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { HashRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Page from './components/Page';
 import CoinFlip from './components/CoinFlip';
 import Selector from './components/Selector';
@@ -21,12 +21,12 @@ function Home() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Page><Home /></Page>} />
         <Route path="/coin" element={<Page title="Heads or Tails"><CoinFlip /></Page>} />
         <Route path="/selector" element={<Page title="List Randomizer"><Selector /></Page>} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
