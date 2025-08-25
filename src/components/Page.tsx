@@ -10,7 +10,7 @@ export default function Page({ children, title }) {
           <h1>RandoMe</h1>
           <Link to="/" className="back-link">
             <div className="back-icon-bg">
-              <img src="RandoMe/images/BackIcon.png" alt="Back" />
+              <img src="/images/BackIcon.png" alt="Back" />
             </div>
           </Link>
         </div>
