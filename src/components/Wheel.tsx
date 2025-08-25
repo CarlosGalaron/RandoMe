@@ -1,5 +1,5 @@
 import { useState } from "react";
-import './selector.css';
+import '../index.css';
 
 type WheelProps = {
   items: string[];
