@@ -215,8 +215,8 @@ input[type="text"] {
 /* Wheel */
 .wheel-wrapper {
   position: relative;
-  width: 300px;
-  height: 320px; /* un poco más alto para el puntero */
+  width: 100%;
+  max-width: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -224,7 +224,7 @@ input[type="text"] {
 
 .wheel-wrapper svg {
   width: 100%;
-  height: 100%;
+  height: auto;
   border-radius: 50%;
 }
 
@@ -283,7 +283,7 @@ text {
     width: 100%; /* ocupa todo el ancho disponible */
     max-height: 200px; /* limitar altura */
     overflow-y: auto;  /* permitir scroll vertical */
-    grid-template-columns: repeat(2, 1fr); /* menos columnas */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
 
   .card-row {
@@ -310,4 +310,3 @@ text {
     font-size: 1.3rem;
   }
 }
-

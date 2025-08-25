@@ -1,4 +1,3 @@
-// Wheel.tsx
 import { useState } from "react";
 import './selector.css';
 
@@ -25,9 +24,11 @@ export function Wheel({ items, colors, spinning, onSpin }: WheelProps) {
   return (
     <div className="wheel-wrapper" onClick={handleSpin}>
       <svg
-        width={radius * 2}
-        height={radius * 2}
+        viewBox={`0 0 ${radius * 2} ${radius * 2}`}
         style={{
+          width: '100%',
+          maxWidth: '300px',
+          height: 'auto',
           transform: `rotate(${rotation}deg)`,
           transition: spinning ? 'transform 5s cubic-bezier(0.33, 1, 0.68, 1)' : 'none'
         }}
@@ -63,7 +64,7 @@ export function Wheel({ items, colors, spinning, onSpin }: WheelProps) {
                 textAnchor="middle"
                 dominantBaseline="middle"
                 fill="white"
-                fontSize="14"
+                fontSize={Math.max(12, radius / 10)}
               >
                 {item}
               </text>
