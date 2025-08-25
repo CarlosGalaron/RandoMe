@@ -10,7 +10,7 @@ export default function Page({ children, title }) {
           <h1>RandoMe</h1>
           <Link to="/" className="back-link">
             <div className="back-icon-bg">
-              <img src="/images/BackIcon.png" alt="Back" />
+              <img src={`${import.meta.env.BASE_URL}images/BackIcon.png`} alt="Back" />
             </div>
           </Link>
         </div>

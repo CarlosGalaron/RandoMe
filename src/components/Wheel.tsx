@@ -11,8 +11,6 @@ type WheelProps = {
 export function Wheel({ items, colors, spinning, onSpin }: WheelProps) {
   const [rotation, setRotation] = useState(0);
   const radius = 150;
-  const center = radius;
-  const anglePerSlice = 360 / items.length;
 
   const handleSpin = () => {
     if (spinning) return;
@@ -22,7 +20,11 @@ export function Wheel({ items, colors, spinning, onSpin }: WheelProps) {
   };
 
   return (
-    <div className="wheel-wrapper" onClick={handleSpin}>
+    <div 
+      className="wheel-wrapper" 
+      onClick={handleSpin} 
+      style={{ cursor: spinning ? 'not-allowed' : 'pointer' }}
+    >
       <svg
         viewBox={`0 0 ${radius * 2} ${radius * 2}`}
         style={{
@@ -33,43 +35,25 @@ export function Wheel({ items, colors, spinning, onSpin }: WheelProps) {
           transition: spinning ? 'transform 5s cubic-bezier(0.33, 1, 0.68, 1)' : 'none'
         }}
       >
-        {items.map((item, i) => {
+        {items.map((_, i) => {
+          const anglePerSlice = 360 / items.length;
           const startAngle = ((i * anglePerSlice - 90) * Math.PI) / 180;
           const endAngle = (((i + 1) * anglePerSlice - 90) * Math.PI) / 180;
 
-          const x1 = center + radius * Math.cos(startAngle);
-          const y1 = center + radius * Math.sin(startAngle);
-          const x2 = center + radius * Math.cos(endAngle);
-          const y2 = center + radius * Math.sin(endAngle);
-
+          const x1 = radius + radius * Math.cos(startAngle);
+          const y1 = radius + radius * Math.sin(startAngle);
+          const x2 = radius + radius * Math.cos(endAngle);
+          const y2 = radius + radius * Math.sin(endAngle);
           const largeArc = anglePerSlice > 180 ? 1 : 0;
 
           const pathData = `
-            M ${center} ${center}
+            M ${radius} ${radius}
             L ${x1} ${y1}
             A ${radius} ${radius} 0 ${largeArc} 1 ${x2} ${y2}
             Z
           `;
 
-          const textAngle = ((i + 0.5) * anglePerSlice - 90) * (Math.PI / 180);
-          const textX = center + (radius / 2) * Math.cos(textAngle);
-          const textY = center + (radius / 2) * Math.sin(textAngle);
-
-          return (
-            <g key={i}>
-              <path d={pathData} fill={colors[i]} stroke="black" strokeWidth="1" />
-              <text
-                x={textX}
-                y={textY}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                fill="white"
-                fontSize={Math.max(12, radius / 10)}
-              >
-                {item}
-              </text>
-            </g>
-          );
+          return <path key={i} d={pathData} fill={colors[i]} stroke="black" strokeWidth="1" />;
         })}
       </svg>
       <div className="wheel-pointer">▲</div>

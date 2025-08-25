@@ -38,7 +38,7 @@ export default function Selector() {
     if (currentName.trim() !== "" && names.length < (count ?? 0)) {
       setNames([...names, currentName.trim()]);
       setCurrentName("");
-      if (nameInputRef.current) nameInputRef.current.focus();
+      nameInputRef.current?.focus();
     }
   };
 
@@ -86,6 +86,8 @@ export default function Selector() {
     }
   };
 
+  const getOrdinal = (n: number) => n + "º";
+
   return (
     <div className="selector-container">
       {step === "input" && (
@@ -131,9 +133,7 @@ export default function Selector() {
                 placeholder="Enter a name"
                 onKeyDown={handleKeyDown}
               />
-              <button onClick={handleAddName} className="btn btn-green">
-                Add
-              </button>
+              <button onClick={handleAddName} className="btn btn-green">Add</button>
             </div>
           )}
 
@@ -163,12 +163,15 @@ export default function Selector() {
           <Wheel items={participants} colors={colors} spinning={spinning} onSpin={handleSpin} />
           <div
             className="results-container"
-            style={{
-              gridTemplateColumns: `repeat(auto-fit, minmax(100px, 1fr))`
-            }}
+            style={{ gridTemplateColumns: `repeat(auto-fit, minmax(100px, 1fr))` }}
           >
             {orderedParticipants.map((p, i) => (
-              <div key={i}>{i + 1}. {p}</div>
+              <div 
+                key={i} 
+                style={{ fontWeight: i === 0 ? 'bold' : 'normal', color: i === 0 ? '#facc15' : undefined }}
+              >
+                {getOrdinal(i + 1)} → {p}
+              </div>
             ))}
           </div>
         </div>

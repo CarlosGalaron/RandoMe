@@ -213,6 +213,19 @@ input[type="text"] {
 }
 
 /* Wheel */
+/* Wheel pointer ajustado */
+.wheel-pointer {
+  position: absolute;
+  top: -0.5rem; /* sube un poco el puntero para que quede sobre el borde */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: #facc15;
+  pointer-events: none;
+  text-shadow: 0 0 4px #fef08a, 0 0 8px #fef08a;
+}
+
+/* Cursor de la ruleta */
 .wheel-wrapper {
   position: relative;
   width: 100%;
@@ -220,22 +233,18 @@ input[type="text"] {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer; /* indica que se puede interactuar */
+}
+
+/* Opción: ocultar nombres/números de los slices */
+.wheel-wrapper text {
+  display: none;
 }
 
 .wheel-wrapper svg {
   width: 100%;
   height: auto;
   border-radius: 50%;
-}
-
-.wheel-pointer {
-  position: absolute;
-  top: 0; 
-  left: 50%;
-  transform: translateX(-50%) translateY(0%); /* ajustar la vertical */
-  font-size: 2rem;
-  color: #facc15;
-  pointer-events: none;
 }
 
 .wheel-pointer.spinning {
