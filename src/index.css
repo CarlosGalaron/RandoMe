@@ -270,3 +270,44 @@ text {
   color: #f5f5f5;
   font-family: sans-serif;
 }
+
+/* Media queries para tablets y móviles */
+@media (max-width: 1024px) {
+  .wheel-container {
+    flex-direction: column; /* fila → columna */
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .results-container {
+    width: 100%; /* ocupa todo el ancho disponible */
+    max-height: 200px; /* limitar altura */
+    overflow-y: auto;  /* permitir scroll vertical */
+    grid-template-columns: repeat(2, 1fr); /* menos columnas */
+  }
+
+  .card-row {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .wheel-container {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .results-container {
+    grid-template-columns: 1fr; /* 1 columna en móvil */
+    max-height: 180px;
+  }
+
+  .card {
+    width: 180px;
+    min-height: 160px;
+    font-size: 1.3rem;
+  }
+}
+
